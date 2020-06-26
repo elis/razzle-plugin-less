@@ -104,9 +104,7 @@ module.exports = (
         ? [
             {
               loader: 'css-loader',
-              options: Object.assign({}, options.css[constantEnv], {
-                onlyLocals: true,
-              }),
+              options: Object.assign({}, options.css[constantEnv]),
             },
             resolveUrlLoader,
             postCssLoader,
