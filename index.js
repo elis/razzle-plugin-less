@@ -95,6 +95,10 @@ module.exports = (
     loader: 'less-loader',
     options: Object.assign({}, options.less[constantEnv]),
   };
+  config.plugins = [
+    new MiniCssExtractPlugin(),
+    ...config.plugins || []
+  ]
 
   config.module.rules = [
     ...config.module.rules,
