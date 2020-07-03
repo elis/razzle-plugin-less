@@ -1,7 +1,7 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const paths = require('razzle/config/paths');
 
@@ -98,7 +98,7 @@ module.exports = (
     options: Object.assign({}, options.less[constantEnv]),
   };
   config.plugins = [
-    new MiniCssExtractPlugin(options.MiniCssExtractPlugin[constantEnv]),
+//     new MiniCssExtractPlugin(options.MiniCssExtractPlugin[constantEnv]),
     ...config.plugins || []
   ]
 
@@ -108,19 +108,13 @@ module.exports = (
       test: /\.less$/,
       use: isServer
         ? [
-            {
-              loader: 'css-loader',
-              options: Object.assign({}, options.css[constantEnv]),
-            },
+            cssLoader,
             resolveUrlLoader,
             postCssLoader,
             lessLoader,
           ]
         : [
-            dev ? styleLoader : {
-              loader: MiniCssExtractPlugin.loader,
-              options: options.loader[constantEnv]
-            },
+//             dev ? styleLoader : MiniCssExtractPlugin.loader,
             cssLoader,
             postCssLoader,
             resolveUrlLoader,
