@@ -114,7 +114,7 @@ module.exports = (
             lessLoader,
           ]
         : [
-//             dev ? styleLoader : MiniCssExtractPlugin.loader,
+            styleLoader, // dev ? styleLoader : MiniCssExtractPlugin.loader,
             cssLoader,
             postCssLoader,
             resolveUrlLoader,
