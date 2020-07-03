@@ -54,6 +54,8 @@ const defaultOptions = {
     dev: {},
     prod: {},
   },
+  loader: {},
+  MiniCssExtractPlugin: {}
 };
 
 module.exports = (
@@ -96,7 +98,7 @@ module.exports = (
     options: Object.assign({}, options.less[constantEnv]),
   };
   config.plugins = [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin(options.MiniCssExtractPlugin[constantEnv]),
     ...config.plugins || []
   ]
 
@@ -115,7 +117,10 @@ module.exports = (
             lessLoader,
           ]
         : [
-            dev ? styleLoader : MiniCssExtractPlugin.loader,
+            dev ? styleLoader : {
+              loader: MiniCssExtractPlugin.loader,
+              options: options.loader[constantEnv]
+            },
             cssLoader,
             postCssLoader,
             resolveUrlLoader,
